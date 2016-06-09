@@ -39,7 +39,6 @@ public class FilmificationGUI extends javax.swing.JFrame
         
         initComponents();
         
-        initIcons(128, 128);
         setNumOfImages(11);
         
         setExtendedState(JFrame.MAXIMIZED_BOTH); 
@@ -106,7 +105,7 @@ public class FilmificationGUI extends javax.swing.JFrame
             viewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(viewPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tileViewScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
+                .addComponent(tileViewScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -166,7 +165,7 @@ public class FilmificationGUI extends javax.swing.JFrame
                 .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(frameNumberLabel)
                     .addComponent(frameNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(1, 1, 1)
+                .addGap(5, 5, 5)
                 .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(playButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(prevButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -413,37 +412,6 @@ public class FilmificationGUI extends javax.swing.JFrame
 
         addScreenshotsTileView(5, 3);
     }//GEN-LAST:event_tileViewButtonActionPerformed
-
-    public void initIcons(int rowSize, int columnSize) throws URISyntaxException
-    {
-        BufferedImage img = null;
-        try 
-        {
-            String path = "/icons/tileView.png";
-            img = ImageIO.read(new File(getClass().getResource(path).toURI()));
-        } catch (IOException e) 
-        {
-            e.printStackTrace();
-        }
-        
-        //img = toBufferedImage(img.getScaledInstance(tileViewButton.getWidth(), 
-        //tileViewButton.getHeight(), Image.SCALE_SMOOTH));
-            
-        ImageIcon imageIcon = new ImageIcon(img);
-        tileViewButton.setIcon(imageIcon);
-        
-        try 
-        {
-            String path = "/icons/fullView.png";
-            img = ImageIO.read(new File(getClass().getResource(path).toURI()));
-        } catch (IOException e) 
-        {
-            e.printStackTrace();
-        }
-        
-        imageIcon = new ImageIcon(img);
-        fullViewButton.setIcon(imageIcon);
-    }
     
     public void initScreenshots(int numOfImages, String folder, 
             String filenameStart, String fileExtension, boolean isTileView) throws URISyntaxException

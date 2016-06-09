@@ -1,4 +1,5 @@
 
+import java.net.URISyntaxException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -48,6 +49,8 @@ public class Filmification
                 } catch (UnsupportedLookAndFeelException | ParseException ex) 
                 {
                     Logger.getLogger(FilmificationGUI.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (URISyntaxException ex) {
+                    Logger.getLogger(Filmification.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
