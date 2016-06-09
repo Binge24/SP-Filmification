@@ -43,9 +43,11 @@ public class FilmificationGUI extends javax.swing.JFrame
         
         setExtendedState(JFrame.MAXIMIZED_BOTH); 
         
+        skipToStartButton.setEnabled(false);
         prevButton.setEnabled(false);
         nextButton.setEnabled(false);
         playButton.setEnabled(false);
+        skipToEndButton.setEnabled(false);
     }
     
     /**
@@ -68,21 +70,42 @@ public class FilmificationGUI extends javax.swing.JFrame
         playButton = new javax.swing.JButton();
         prevButton = new javax.swing.JButton();
         nextButton = new javax.swing.JButton();
+        skipToStartButton = new javax.swing.JButton();
+        skipToEndButton = new javax.swing.JButton();
         algoNameLabel = new javax.swing.JLabel();
         fullViewButton = new javax.swing.JButton();
         tileViewButton = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
-        openFilmMenuItem = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem10 = new javax.swing.JMenuItem();
+        jMenuItem11 = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jMenuItem18 = new javax.swing.JMenuItem();
+        jMenuItem19 = new javax.swing.JMenuItem();
+        jSeparator3 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem12 = new javax.swing.JMenuItem();
+        jSeparator4 = new javax.swing.JPopupMenu.Separator();
+        jMenu2 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        exitMenuItem = new javax.swing.JMenuItem();
+        jSeparator5 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem15 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jSeparator6 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem13 = new javax.swing.JMenuItem();
+        jMenuItem14 = new javax.swing.JMenuItem();
+        jMenuItem16 = new javax.swing.JMenuItem();
+        jMenuItem17 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        jMenuItem20 = new javax.swing.JMenuItem();
+        jMenuItem21 = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -105,7 +128,7 @@ public class FilmificationGUI extends javax.swing.JFrame
             viewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(viewPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tileViewScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+                .addComponent(tileViewScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -115,7 +138,7 @@ public class FilmificationGUI extends javax.swing.JFrame
         frameNumberTextField.setFocusable(false);
 
         playButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/play.png"))); // NOI18N
-        playButton.setPreferredSize(new java.awt.Dimension(40, 40));
+        playButton.setPreferredSize(new java.awt.Dimension(50, 50));
         playButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 playButtonActionPerformed(evt);
@@ -123,7 +146,7 @@ public class FilmificationGUI extends javax.swing.JFrame
         });
 
         prevButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/prev.png"))); // NOI18N
-        prevButton.setPreferredSize(new java.awt.Dimension(40, 30));
+        prevButton.setPreferredSize(new java.awt.Dimension(40, 40));
         prevButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 prevButtonActionPerformed(evt);
@@ -131,10 +154,26 @@ public class FilmificationGUI extends javax.swing.JFrame
         });
 
         nextButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/next.png"))); // NOI18N
-        nextButton.setPreferredSize(new java.awt.Dimension(40, 30));
+        nextButton.setPreferredSize(new java.awt.Dimension(40, 40));
         nextButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nextButtonActionPerformed(evt);
+            }
+        });
+
+        skipToStartButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/skpToStart.png"))); // NOI18N
+        skipToStartButton.setPreferredSize(new java.awt.Dimension(40, 40));
+        skipToStartButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                skipToStartButtonActionPerformed(evt);
+            }
+        });
+
+        skipToEndButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/skpToEnd.png"))); // NOI18N
+        skipToEndButton.setPreferredSize(new java.awt.Dimension(40, 40));
+        skipToEndButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                skipToEndButtonActionPerformed(evt);
             }
         });
 
@@ -143,7 +182,9 @@ public class FilmificationGUI extends javax.swing.JFrame
         controlPanelLayout.setHorizontalGroup(
             controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, controlPanelLayout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+                .addContainerGap(31, Short.MAX_VALUE)
+                .addComponent(skipToStartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(controlPanelLayout.createSequentialGroup()
                         .addComponent(frameNumberLabel)
@@ -152,24 +193,29 @@ public class FilmificationGUI extends javax.swing.JFrame
                     .addGroup(controlPanelLayout.createSequentialGroup()
                         .addComponent(prevButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(playButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(playButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(2, 2, 2)))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(skipToEndButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         controlPanelLayout.setVerticalGroup(
             controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, controlPanelLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(frameNumberLabel)
-                    .addComponent(frameNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
-                .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(playButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(prevButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nextButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(skipToStartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(controlPanelLayout.createSequentialGroup()
+                        .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(frameNumberLabel)
+                            .addComponent(frameNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(5, 5, 5)
+                        .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(playButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(prevButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nextButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(skipToEndButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(1, 1, 1))
         );
 
@@ -199,45 +245,91 @@ public class FilmificationGUI extends javax.swing.JFrame
                 fileMenuActionPerformed(evt);
             }
         });
-
-        openFilmMenuItem.setText("Open Film");
-        openFilmMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                openFilmMenuItemActionPerformed(evt);
-            }
-        });
-        fileMenu.add(openFilmMenuItem);
-
-        jMenuItem7.setText("Prepend Film");
-        fileMenu.add(jMenuItem7);
-
-        jMenuItem6.setText("Append Film");
-        fileMenu.add(jMenuItem6);
-
-        jMenuItem4.setText("Save");
-        fileMenu.add(jMenuItem4);
-
-        jMenuItem5.setText("Save as...");
-        fileMenu.add(jMenuItem5);
         fileMenu.add(jSeparator1);
 
-        exitMenuItem.setText("Exit");
-        exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem8.setText("New Film");
+        fileMenu.add(jMenuItem8);
+        fileMenu.add(jSeparator2);
+
+        jMenuItem10.setText("Open Film");
+        fileMenu.add(jMenuItem10);
+
+        jMenuItem11.setText("Open Recent Film");
+        fileMenu.add(jMenuItem11);
+
+        jMenu4.setText("Open Sample Films");
+
+        jMenuItem18.setText("Jacobi Relaxation Technique");
+        jMenu4.add(jMenuItem18);
+
+        jMenuItem19.setText("Multi-Staged Network");
+        jMenu4.add(jMenuItem19);
+
+        fileMenu.add(jMenu4);
+        fileMenu.add(jSeparator3);
+
+        jMenuItem9.setText("Save");
+        fileMenu.add(jMenuItem9);
+
+        jMenuItem12.setText("Save as...");
+        fileMenu.add(jMenuItem12);
+        fileMenu.add(jSeparator4);
+
+        jMenu2.setText("Insert Film");
+
+        jMenuItem4.setText("Prepend");
+        jMenu2.add(jMenuItem4);
+
+        jMenuItem5.setText("Append");
+        jMenu2.add(jMenuItem5);
+
+        fileMenu.add(jMenu2);
+        fileMenu.add(jSeparator5);
+
+        jMenuItem15.setText("Exit");
+        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exitMenuItemActionPerformed(evt);
+                jMenuItem15ActionPerformed(evt);
             }
         });
-        fileMenu.add(exitMenuItem);
+        fileMenu.add(jMenuItem15);
 
         menuBar.add(fileMenu);
 
+        jMenu3.setText("Edit");
+
+        jMenuItem6.setText("Undo");
+        jMenu3.add(jMenuItem6);
+
+        jMenuItem7.setText("Redo");
+        jMenu3.add(jMenuItem7);
+        jMenu3.add(jSeparator6);
+
+        jMenuItem13.setText("Cut");
+        jMenu3.add(jMenuItem13);
+
+        jMenuItem14.setText("Copy");
+        jMenu3.add(jMenuItem14);
+
+        jMenuItem16.setText("Paste");
+        jMenu3.add(jMenuItem16);
+
+        jMenuItem17.setText("Select All");
+        jMenu3.add(jMenuItem17);
+
+        menuBar.add(jMenu3);
+
         jMenu1.setText("View");
 
-        jMenuItem2.setText("Sequential Jacobi Relaxation Technique");
-        jMenu1.add(jMenuItem2);
+        jMenu5.setText("Split");
 
-        jMenuItem3.setText("Multi-stage Network");
-        jMenu1.add(jMenuItem3);
+        jMenuItem20.setText("Horizontally");
+        jMenu5.add(jMenuItem20);
+
+        jMenuItem21.setText("Vertically");
+        jMenu5.add(jMenuItem21);
+
+        jMenu1.add(jMenu5);
 
         menuBar.add(jMenu1);
 
@@ -289,27 +381,17 @@ public class FilmificationGUI extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
     
    
-    private void fileMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileMenuActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fileMenuActionPerformed
-
-    private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_exitMenuItemActionPerformed
-
-    private void openFilmMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openFilmMenuItemActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_openFilmMenuItemActionPerformed
-
     private void fullViewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fullViewButtonActionPerformed
         tileViewPanel.setLayout(new java.awt.GridLayout(1, 1));
         
         setCurrentIndex(0);
         frameNumberTextField.setText(String.valueOf(getCurrentIndex() + 1));
         
+        skipToStartButton.setEnabled(true);
         prevButton.setEnabled(false);
         nextButton.setEnabled(true);
         playButton.setEnabled(true);
+        skipToEndButton.setEnabled(true);
         
         try 
         {
@@ -412,6 +494,28 @@ public class FilmificationGUI extends javax.swing.JFrame
 
         addScreenshotsTileView(5, 3);
     }//GEN-LAST:event_tileViewButtonActionPerformed
+
+    private void fileMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileMenuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fileMenuActionPerformed
+
+    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jMenuItem15ActionPerformed
+
+    private void skipToStartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_skipToStartButtonActionPerformed
+        setCurrentIndex(0);
+        addScreenshotsFullView(getCurrentIndex());
+        frameNumberTextField.setText(String.valueOf(getCurrentIndex() + 1));
+        updatePrevAndNext();
+    }//GEN-LAST:event_skipToStartButtonActionPerformed
+
+    private void skipToEndButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_skipToEndButtonActionPerformed
+        setCurrentIndex(getNumOfImages() - 1);
+        addScreenshotsFullView(getCurrentIndex());
+        frameNumberTextField.setText(String.valueOf(getCurrentIndex() + 1));
+        updatePrevAndNext();
+    }//GEN-LAST:event_skipToEndButtonActionPerformed
     
     public void initScreenshots(int numOfImages, String folder, 
             String filenameStart, String fileExtension, boolean isTileView) throws URISyntaxException
@@ -543,25 +647,46 @@ public class FilmificationGUI extends javax.swing.JFrame
     private javax.swing.JLabel algoNameLabel;
     private javax.swing.JPanel controlPanel;
     private javax.swing.ButtonGroup elementTypeButtonGroup;
-    private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JLabel frameNumberLabel;
     private javax.swing.JTextField frameNumberTextField;
     private javax.swing.JButton fullViewButton;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
+    private javax.swing.JMenuItem jMenuItem14;
+    private javax.swing.JMenuItem jMenuItem15;
+    private javax.swing.JMenuItem jMenuItem16;
+    private javax.swing.JMenuItem jMenuItem17;
+    private javax.swing.JMenuItem jMenuItem18;
+    private javax.swing.JMenuItem jMenuItem19;
+    private javax.swing.JMenuItem jMenuItem20;
+    private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JPopupMenu.Separator jSeparator3;
+    private javax.swing.JPopupMenu.Separator jSeparator4;
+    private javax.swing.JPopupMenu.Separator jSeparator5;
+    private javax.swing.JPopupMenu.Separator jSeparator6;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JButton nextButton;
-    private javax.swing.JMenuItem openFilmMenuItem;
     private javax.swing.JButton playButton;
     private javax.swing.JButton prevButton;
+    private javax.swing.JButton skipToEndButton;
+    private javax.swing.JButton skipToStartButton;
     private javax.swing.JButton tileViewButton;
     private javax.swing.JPanel tileViewPanel;
     private javax.swing.JScrollPane tileViewScrollPane;
