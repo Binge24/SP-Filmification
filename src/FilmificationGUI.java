@@ -35,23 +35,24 @@ public class FilmificationGUI extends javax.swing.JFrame
     private int currentIndex;
     private Timer t;
     
-    public FilmificationGUI() throws UnsupportedLookAndFeelException, ParseException, URISyntaxException 
+    public FilmificationGUI(int numOfImages, boolean isTileViewDefault) throws UnsupportedLookAndFeelException, ParseException, URISyntaxException 
     {
         UIManager.setLookAndFeel(new SyntheticaBlackMoonLookAndFeel());
         
         initComponents();
         
-        setNumOfImages(11);
+        setNumOfImages(numOfImages);
         
         setExtendedState(JFrame.MAXIMIZED_BOTH); 
         
-        skipToStartButton.setEnabled(false);
-        prevButton.setEnabled(false);
-        nextButton.setEnabled(false);
-        playButton.setEnabled(false);
-        skipToEndButton.setEnabled(false);
-        
-        setDefaultView(tileViewButton);
+        if(isTileViewDefault)
+        {
+            setDefaultView(tileViewButton);
+        }
+        else
+        {
+            setDefaultView(fullViewButton);
+        }
     }
     
     /**
@@ -68,12 +69,7 @@ public class FilmificationGUI extends javax.swing.JFrame
         viewPanel = new javax.swing.JPanel();
         tileViewScrollPane = new javax.swing.JScrollPane();
         tileViewPanel = new javax.swing.JPanel();
-        controlPanel = new javax.swing.JPanel();
-        frameNumberLabel = new javax.swing.JLabel();
-        frameNumberTextField = new javax.swing.JTextField();
-        fullViewButton = new javax.swing.JButton();
-        tileViewButton1 = new javax.swing.JButton();
-        tileViewButton = new javax.swing.JButton();
+        playbackPanel = new javax.swing.JPanel();
         skipToStartButton = new javax.swing.JButton();
         skipToEndButton = new javax.swing.JButton();
         nextButton = new javax.swing.JButton();
@@ -81,6 +77,13 @@ public class FilmificationGUI extends javax.swing.JFrame
         playButton = new javax.swing.JButton();
         prevButton = new javax.swing.JButton();
         algoNameLabel = new javax.swing.JLabel();
+        viewTypePanel = new javax.swing.JPanel();
+        fullViewButton = new javax.swing.JButton();
+        tileViewButton1 = new javax.swing.JButton();
+        tileViewButton = new javax.swing.JButton();
+        frameNumberPanel = new javax.swing.JPanel();
+        frameNumberTextField = new javax.swing.JTextField();
+        frameNumberLabel = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
@@ -140,42 +143,7 @@ public class FilmificationGUI extends javax.swing.JFrame
                 .addContainerGap())
         );
 
-        controlPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        frameNumberLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        frameNumberLabel.setText("Frame Number:");
-
-        frameNumberTextField.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        frameNumberTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        frameNumberTextField.setFocusable(false);
-        frameNumberTextField.setPreferredSize(new java.awt.Dimension(40, 40));
-
-        fullViewButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/fullView.png"))); // NOI18N
-        fullViewButton.setToolTipText("Full View");
-        fullViewButton.setPreferredSize(new java.awt.Dimension(40, 40));
-        fullViewButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fullViewButtonActionPerformed(evt);
-            }
-        });
-
-        tileViewButton1.setToolTipText("Tile View");
-        tileViewButton1.setFocusable(false);
-        tileViewButton1.setPreferredSize(new java.awt.Dimension(40, 40));
-        tileViewButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tileViewButton1ActionPerformed(evt);
-            }
-        });
-
-        tileViewButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/tileView.png"))); // NOI18N
-        tileViewButton.setToolTipText("Tile View");
-        tileViewButton.setPreferredSize(new java.awt.Dimension(40, 40));
-        tileViewButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tileViewButtonActionPerformed(evt);
-            }
-        });
+        playbackPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         skipToStartButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/skpToStart.png"))); // NOI18N
         skipToStartButton.setToolTipText("Go to first frame");
@@ -231,18 +199,12 @@ public class FilmificationGUI extends javax.swing.JFrame
             }
         });
 
-        javax.swing.GroupLayout controlPanelLayout = new javax.swing.GroupLayout(controlPanel);
-        controlPanel.setLayout(controlPanelLayout);
-        controlPanelLayout.setHorizontalGroup(
-            controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, controlPanelLayout.createSequentialGroup()
-                .addGap(164, 164, 164)
-                .addComponent(tileViewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tileViewButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(fullViewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(220, 220, 220)
+        javax.swing.GroupLayout playbackPanelLayout = new javax.swing.GroupLayout(playbackPanel);
+        playbackPanel.setLayout(playbackPanelLayout);
+        playbackPanelLayout.setHorizontalGroup(
+            playbackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, playbackPanelLayout.createSequentialGroup()
+                .addGap(5, 5, 5)
                 .addComponent(skipToStartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(prevButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -254,35 +216,110 @@ public class FilmificationGUI extends javax.swing.JFrame
                 .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(skipToEndButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(220, 220, 220)
-                .addComponent(frameNumberLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(frameNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        controlPanelLayout.setVerticalGroup(
-            controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, controlPanelLayout.createSequentialGroup()
+        playbackPanelLayout.setVerticalGroup(
+            playbackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, playbackPanelLayout.createSequentialGroup()
                 .addGap(5, 5, 5)
-                .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(playbackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(prevButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(playButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(skipToStartButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(skipToEndButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(skipToStartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tileViewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tileViewButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fullViewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(frameNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(frameNumberLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(skipToStartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(5, 5, 5))
         );
 
         algoNameLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         algoNameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         algoNameLabel.setText("Jacobi Relaxation Technique");
+
+        viewTypePanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        fullViewButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/fullView.png"))); // NOI18N
+        fullViewButton.setToolTipText("Full View");
+        fullViewButton.setPreferredSize(new java.awt.Dimension(40, 40));
+        fullViewButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fullViewButtonActionPerformed(evt);
+            }
+        });
+
+        tileViewButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/eye.png"))); // NOI18N
+        tileViewButton1.setToolTipText("Tile View");
+        tileViewButton1.setFocusable(false);
+        tileViewButton1.setPreferredSize(new java.awt.Dimension(40, 40));
+        tileViewButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tileViewButton1ActionPerformed(evt);
+            }
+        });
+
+        tileViewButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/tileView.png"))); // NOI18N
+        tileViewButton.setToolTipText("Tile View");
+        tileViewButton.setPreferredSize(new java.awt.Dimension(40, 40));
+        tileViewButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tileViewButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout viewTypePanelLayout = new javax.swing.GroupLayout(viewTypePanel);
+        viewTypePanel.setLayout(viewTypePanelLayout);
+        viewTypePanelLayout.setHorizontalGroup(
+            viewTypePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewTypePanelLayout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addComponent(tileViewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tileViewButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(fullViewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5))
+        );
+        viewTypePanelLayout.setVerticalGroup(
+            viewTypePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewTypePanelLayout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addGroup(viewTypePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(tileViewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tileViewButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fullViewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(5, 5, 5))
+        );
+
+        frameNumberPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        frameNumberTextField.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        frameNumberTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        frameNumberTextField.setFocusable(false);
+        frameNumberTextField.setPreferredSize(new java.awt.Dimension(40, 40));
+
+        frameNumberLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        frameNumberLabel.setText("Frame Number:");
+
+        javax.swing.GroupLayout frameNumberPanelLayout = new javax.swing.GroupLayout(frameNumberPanel);
+        frameNumberPanel.setLayout(frameNumberPanelLayout);
+        frameNumberPanelLayout.setHorizontalGroup(
+            frameNumberPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, frameNumberPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(frameNumberLabel)
+                .addGap(28, 28, 28)
+                .addComponent(frameNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        frameNumberPanelLayout.setVerticalGroup(
+            frameNumberPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, frameNumberPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(frameNumberPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(frameNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(frameNumberLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
 
         fileMenu.setText("Film");
         fileMenu.addActionListener(new java.awt.event.ActionListener() {
@@ -390,21 +427,33 @@ public class FilmificationGUI extends javax.swing.JFrame
                 .addGap(422, 422, 422))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(viewPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(controlPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(viewPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(155, 155, 155)
+                        .addComponent(viewTypePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(playbackPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(frameNumberPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(155, 155, 155)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(algoNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(viewPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(controlPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(frameNumberPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(algoNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(viewPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(playbackPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(viewTypePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
 
@@ -414,27 +463,41 @@ public class FilmificationGUI extends javax.swing.JFrame
     
    
     private void fullViewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fullViewButtonActionPerformed
-        tileViewPanel.setLayout(new java.awt.GridLayout(1, 1));
-        
-        setCurrentIndex(0);
-        frameNumberTextField.setText(String.valueOf(getCurrentIndex() + 1));
-        
-        skipToStartButton.setEnabled(true);
-        prevButton.setEnabled(false);
-        nextButton.setEnabled(true);
-        playButton.setEnabled(true);
-        skipToEndButton.setEnabled(true);
-        
         try 
         {
             initScreenshots(getNumOfImages(), "screenshots", "5x5jrt", "png", false);
+            
+            tileViewPanel.setLayout(new java.awt.GridLayout(1, 1));
+        
+            showTileViewButton();
+            
+            playbackPanel.setVisible(true);
+            frameNumberPanel.setVisible(true);
+            
+            addScreenshotsFullView(0);
+            
+            setCurrentIndex(0);
+            frameNumberTextField.setText(String.valueOf(getCurrentIndex() + 1));
+            
         } catch (URISyntaxException ex) 
         {
             Logger.getLogger(FilmificationGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        addScreenshotsFullView(0);
     }//GEN-LAST:event_fullViewButtonActionPerformed
+    
+    public void showTileViewButton()
+    {
+        tileViewButton.setEnabled(true);
+        fullViewButton.setEnabled(false);
+ 
+    }
+    
+    public void showFullViewButton()
+    {
+        tileViewButton.setEnabled(false);
+        fullViewButton.setEnabled(true);
+ 
+    }
     
     private void prevButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevButtonActionPerformed
         if(getCurrentIndex() > 0)
@@ -460,6 +523,7 @@ public class FilmificationGUI extends javax.swing.JFrame
 
     public void setDefaultView(JButton b)
     {
+        b.setSelected(true);
         b.doClick();
     }
     
@@ -524,12 +588,17 @@ public class FilmificationGUI extends javax.swing.JFrame
         try
         {
             initScreenshots(getNumOfImages(), "screenshots", "5x5jrt", "png", true);
+            addScreenshotsTileView(4, 3);
+            
+            showFullViewButton();
+            
+            playbackPanel.setVisible(false);
+            frameNumberPanel.setVisible(false);
+            
         } catch (URISyntaxException ex)
         {
             Logger.getLogger(FilmificationGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        addScreenshotsTileView(4, 3);
     }//GEN-LAST:event_tileViewButtonActionPerformed
 
     private void fileMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileMenuActionPerformed
@@ -590,12 +659,6 @@ public class FilmificationGUI extends javax.swing.JFrame
                 // same font but bold
                 Font boldFont = new Font(font.getFontName(), Font.BOLD, font.getSize());
                 label.setFont(boldFont);
-                /*
-                if(i == 1 || i == 2 || i == 11)
-                {
-                    screenshots.add(new JLabel());
-                }
-                        */
             }
             else
             {
@@ -696,10 +759,10 @@ public class FilmificationGUI extends javax.swing.JFrame
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel algoNameLabel;
-    private javax.swing.JPanel controlPanel;
     private javax.swing.ButtonGroup elementTypeButtonGroup;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JLabel frameNumberLabel;
+    private javax.swing.JPanel frameNumberPanel;
     private javax.swing.JTextField frameNumberTextField;
     private javax.swing.JButton fullViewButton;
     private javax.swing.JMenu jMenu1;
@@ -735,6 +798,7 @@ public class FilmificationGUI extends javax.swing.JFrame
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JButton nextButton;
     private javax.swing.JButton playButton;
+    private javax.swing.JPanel playbackPanel;
     private javax.swing.JButton prevButton;
     private javax.swing.JButton skipToEndButton;
     private javax.swing.JButton skipToStartButton;
@@ -744,5 +808,6 @@ public class FilmificationGUI extends javax.swing.JFrame
     private javax.swing.JPanel tileViewPanel;
     private javax.swing.JScrollPane tileViewScrollPane;
     private javax.swing.JPanel viewPanel;
+    private javax.swing.JPanel viewTypePanel;
     // End of variables declaration//GEN-END:variables
 }

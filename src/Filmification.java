@@ -44,7 +44,7 @@ public class Filmification
             {
                 try 
                 {
-                    FilmificationGUI gui = new FilmificationGUI();
+                    FilmificationGUI gui = new FilmificationGUI(11, true);
                     gui.setVisible(true);
                 } catch (UnsupportedLookAndFeelException | ParseException ex) 
                 {
