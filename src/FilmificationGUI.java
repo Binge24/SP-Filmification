@@ -566,6 +566,11 @@ public class FilmificationGUI extends javax.swing.JFrame
         fileMenu.add(jMenuItem9);
 
         jMenuItem12.setText("Save as...");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
         fileMenu.add(jMenuItem12);
         fileMenu.add(jSeparator4);
 
@@ -844,6 +849,11 @@ public class FilmificationGUI extends javax.swing.JFrame
             updatePlaybackButtons();
         }
     }//GEN-LAST:event_playOrPauseButtonActionPerformed
+
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+        SaveGUI s = new SaveGUI();
+        s.setVisible(true);
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
     
     // --------------- getters and setters --------------- //
 
