@@ -417,7 +417,7 @@
                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                   <Component id="tileViewButton" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="tileViewButton1" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="viewTypeButtonDummy" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="fullViewButton" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
@@ -430,7 +430,7 @@
                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="tileViewButton" min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="tileViewButton1" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="viewTypeButtonDummy" min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="fullViewButton" min="-2" pref="40" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
@@ -453,7 +453,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fullViewButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="tileViewButton1">
+        <Component class="javax.swing.JButton" name="viewTypeButtonDummy">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/icons/eye.png"/>
@@ -465,7 +465,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tileViewButton1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewTypeButtonDummyActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="tileViewButton">
@@ -499,7 +499,7 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Component id="frameNumberLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   <Component id="frameNumberTextField" max="32767" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
               </Group>
