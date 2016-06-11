@@ -408,7 +408,9 @@
           <Font name="Tahoma" size="12" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Jacobi Relaxation Technique"/>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="&quot;Multistage Network Algorithm&quot;" type="code"/>
+        </Property>
       </Properties>
     </Component>
     <Container class="javax.swing.JPanel" name="viewTypePanel">

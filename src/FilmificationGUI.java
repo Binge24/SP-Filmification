@@ -38,10 +38,10 @@ public class FilmificationGUI extends javax.swing.JFrame
     private Timer timer;
     boolean paused = false;
     private String filmSelected = "MultistageNetwork";
-    
-    //NOTE
+    private String filmLabel;
+
     private MultistageNetwork mn = new MultistageNetwork();
-    //add imoha dri benj
+    private JacobiRelaxation jr = new JacobiRelaxation();
     
     public FilmificationGUI(int numOfImages, boolean isTileViewDefault) 
             throws UnsupportedLookAndFeelException, ParseException, URISyntaxException 
@@ -101,57 +101,6 @@ public class FilmificationGUI extends javax.swing.JFrame
     {
         b.setSelected(true);
         b.doClick();
-    }
-    
-    public void old_initScreenshots_pls_delete_later_ty()
-    {
-//    public void initScreenshots(int numOfImages, String folder, 
-//            String filenameStart, String fileExtension, boolean isTileView) throws URISyntaxException
-//    {
-//        getScreenshots().clear();
-//        
-//        for (int i = 1; i <= numOfImages; i++)
-//        {
-//            BufferedImage img = null;
-//            try 
-//            {
-//                String path = "/" + folder + "/" + filenameStart + i + "." + fileExtension;
-//                img = ImageIO.read(new File(getClass().getResource(path).toURI()));
-//            } catch (IOException e) 
-//            {
-//                e.printStackTrace();
-//            }
-//            
-//            JLabel label = new JLabel(); 
-//            
-//            if(isTileView)
-//            {
-//                label.setSize(300, 210);
-//                label.setText("JRT " + i);
-//                
-//                Font font = label.getFont();
-//                // same font but bold
-//                Font boldFont = new Font(font.getFontName(), Font.BOLD, font.getSize());
-//                label.setFont(boldFont);
-//            }
-//            else
-//            {
-//                label.setSize(700, 490);
-//            }
-//            
-//            img = toBufferedImage(img.getScaledInstance(label.getWidth(), 
-//                    label.getHeight(), Image.SCALE_SMOOTH));
-//            
-//            ImageIcon imageIcon = new ImageIcon(img);
-//            label.setIcon(imageIcon);
-//            
-//            label.setHorizontalTextPosition(JLabel.CENTER);
-//            label.setVerticalTextPosition(JLabel.BOTTOM);
-//            label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-//            
-//            screenshots.add(label);
-//        }
-//    }
     }
     
     public void initScreenshots(ArrayList<String> filenames, ArrayList<String> labels, boolean isTileView) throws URISyntaxException {
@@ -495,7 +444,7 @@ public class FilmificationGUI extends javax.swing.JFrame
 
         algoNameLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         algoNameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        algoNameLabel.setText("Jacobi Relaxation Technique");
+        algoNameLabel.setText("Multistage Network Algorithm");
 
         viewTypePanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -726,14 +675,15 @@ public class FilmificationGUI extends javax.swing.JFrame
     
     private void fullViewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fullViewButtonActionPerformed
         updatePlaybackButtons();
-        //NOTE
+
         ArrayList<String> filenames = new ArrayList<String>();
         ArrayList<String> labels = new ArrayList<String>();
         if(filmSelected == "MultistageNetwork"){
             filenames = mn.getScreenshots();
             labels = mn.getLabels();
         } else if (filmSelected == "JacobiRelaxation"){
-            //add imoha dri benj
+            filenames = jr.getScreenshots(11, "5x5jrt");
+            labels = jr.getLabels();
         }
         try 
         {
@@ -795,7 +745,8 @@ public class FilmificationGUI extends javax.swing.JFrame
             filenames = mn.getScreenshots();
             labels = mn.getLabels();
         } else if (filmSelected == "JacobiRelaxation"){
-            //add imoha dri benj
+            filenames = jr.getScreenshots(11, "5x5jrt");
+            labels = jr.getLabels();
         }
         try
         {
@@ -934,12 +885,50 @@ public class FilmificationGUI extends javax.swing.JFrame
 
     private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
         filmSelected = "JacobiRelaxation";
+        algoNameLabel.setText("Jacobi Relaxation Technique");
         System.out.println("selected film: " + filmSelected);
+        
+        ArrayList<String> filenames = jr.getScreenshots(11, "5x5jrt");
+        ArrayList<String> labels = jr.getLabels();
+        
+        try
+        {
+            initScreenshots(filenames, labels, true);
+            addScreenshotsTileView(4, 3);
+            
+            showFullViewButton();
+            
+            playbackPanel.setVisible(false);
+            frameNumberPanel.setVisible(false);
+            
+        } catch (URISyntaxException ex)
+        {
+            Logger.getLogger(FilmificationGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jMenuItem18ActionPerformed
 
     private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
         filmSelected = "MultistageNetwork";
+        algoNameLabel.setText("Multistage Network Algorithm");
         System.out.println("selected film: " + filmSelected);
+        
+        ArrayList<String> filenames = mn.getScreenshots();
+        ArrayList<String> labels = mn.getLabels();
+        
+        try
+        {
+            initScreenshots(filenames, labels, true);
+            addScreenshotsTileView(4, 3);
+            
+            showFullViewButton();
+            
+            playbackPanel.setVisible(false);
+            frameNumberPanel.setVisible(false);
+            
+        } catch (URISyntaxException ex)
+        {
+            Logger.getLogger(FilmificationGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jMenuItem19ActionPerformed
     
     // --------------- getters and setters --------------- //

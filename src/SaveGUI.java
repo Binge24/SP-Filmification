@@ -9,22 +9,30 @@ import javax.swing.JOptionPane;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Binge2/Ryuusei
  */
 public class SaveGUI extends javax.swing.JFrame {
+
     private String filmSelected = "MultistageNetwork";
+    private String file = "";
+
     /**
      * Creates new form SaveGUI
      */
-    public SaveGUI(String filmSelected) 
-    {
-        this.filmSelected = filmSelected;
+    public SaveGUI(String filmSelected) {
         initComponents();
+        this.filmSelected = filmSelected;
+        if (filmSelected == "MultistageNetwork") {
+            file = "SP - Multistage Network.txt";
+            columnsFormattedTextField.setEnabled(false);
+            iterationsFormattedTextField.setEnabled(false);
+        } else if (filmSelected == "JacobiRelaxation") {
+            file = "SP - Jacobi Relaxation Technique.txt";
+        }
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -213,29 +221,19 @@ public class SaveGUI extends javax.swing.JFrame {
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         CodeGenerator c = new CodeGenerator(filmSelected);
-        String file = "";
-        
-        if(filmSelected == "MultistageNetwork"){
-            file = "SP - Multistage Network.txt";
-        } else if (filmSelected == "JacobiRelaxation"){
-            file = "SP - Jacobi Relaxation Technique.txt";
-        }
-        
-        try 
-        {
-            c.overwriteFile(c.readFile(file), 
-                    rowsFormattedTextField.getText(), columnsFormattedTextField.getText(), 
+
+        try {
+            c.overwriteFile(c.readFile(file),
+                    rowsFormattedTextField.getText(), columnsFormattedTextField.getText(),
                     iterationsFormattedTextField.getText(), fileNameTextField.getText());
-            
+
             dispose();
-            
-            JOptionPane.showMessageDialog (null, 
-                    "Successfully saved " + fileNameTextField.getText() + ".flm", 
+
+            JOptionPane.showMessageDialog(null,
+                    "Successfully saved " + fileNameTextField.getText() + ".flm",
                     "File Saved", JOptionPane.INFORMATION_MESSAGE);
-            
-            
-        } catch (IOException ex) 
-        {
+
+        } catch (IOException ex) {
             Logger.getLogger(SaveGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_saveButtonActionPerformed
