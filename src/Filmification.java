@@ -1,4 +1,5 @@
 
+import java.net.URISyntaxException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -7,7 +8,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
- * @author Binge2
+ * @author Binge2/Ryuusei
  */
 
 public class Filmification 
@@ -43,11 +44,13 @@ public class Filmification
             {
                 try 
                 {
-                    FilmificationGUI gui = new FilmificationGUI();
+                    FilmificationGUI gui = new FilmificationGUI(11, true);
                     gui.setVisible(true);
                 } catch (UnsupportedLookAndFeelException | ParseException ex) 
                 {
                     Logger.getLogger(FilmificationGUI.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (URISyntaxException ex) {
+                    Logger.getLogger(Filmification.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
