@@ -2,6 +2,7 @@
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -214,8 +215,17 @@ public class SaveGUI extends javax.swing.JFrame {
         
         try 
         {
-            c.overwriteFile(c.readFile("SP - Jacobi Relaxation Technique.txt"), rowsFormattedTextField.getText(),
-                            columnsFormattedTextField.getText(), iterationsFormattedTextField.getText());
+            c.overwriteFile(c.readFile("SP - Jacobi Relaxation Technique.txt"), 
+                    rowsFormattedTextField.getText(), columnsFormattedTextField.getText(), 
+                    iterationsFormattedTextField.getText(), fileNameTextField.getText());
+            
+            dispose();
+            
+            JOptionPane.showMessageDialog (null, 
+                    "Successfully saved " + fileNameTextField.getText() + ".flm", 
+                    "File Saved", JOptionPane.INFORMATION_MESSAGE);
+            
+            
         } catch (IOException ex) 
         {
             Logger.getLogger(SaveGUI.class.getName()).log(Level.SEVERE, null, ex);

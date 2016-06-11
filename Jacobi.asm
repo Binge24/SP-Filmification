@@ -20,11 +20,11 @@
     msgRelMat db "Relaxed Matrix : ",10,13,"$"
     msgIter db "Iteration Number: ",10,13,"$"
             
-	rows dw 3		;Added from Filmification v1.0
-	cols dw 4		;Added from Filmification v1.0
+	rows dw 4		;Added from Filmification v1.0
+	cols dw 5		;Added from Filmification v1.0
     sizeArray dw 20
     sizeLimit dw 15    
-	itersLimit dw 3		;Added from Filmification v1.0
+	itersLimit dw 2		;Added from Filmification v1.0
     
     ;iters dw 0
     ;colsLimit dw 3

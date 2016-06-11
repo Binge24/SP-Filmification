@@ -7,7 +7,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -23,7 +22,7 @@ public class CodeGenerator
     }
     
     public void overwriteFile(List<String> list, String rows, 
-            String columns, String iterations) throws IOException
+            String columns, String iterations, String fileName) throws IOException
     {
         //list = Arrays.asList("The first line", "The second line");
         
@@ -49,7 +48,9 @@ public class CodeGenerator
             }
         }
         
-        Path file = Paths.get("sampleCode.flm");
+        Path file = Paths.get(fileName + ".flm");
+        Files.write(file, newList, Charset.forName("UTF-8"));
+        file = Paths.get(fileName + ".asm");
         Files.write(file, newList, Charset.forName("UTF-8"));
     }
     
