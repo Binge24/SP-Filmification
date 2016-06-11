@@ -928,7 +928,7 @@ public class FilmificationGUI extends javax.swing.JFrame
     }//GEN-LAST:event_playOrPauseButtonActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
-        SaveGUI s = new SaveGUI();
+        SaveGUI s = new SaveGUI(filmSelected);
         s.setVisible(true);
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 

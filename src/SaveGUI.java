@@ -15,12 +15,13 @@ import javax.swing.JOptionPane;
  * @author Binge2/Ryuusei
  */
 public class SaveGUI extends javax.swing.JFrame {
-
+    private String filmSelected = "MultistageNetwork";
     /**
      * Creates new form SaveGUI
      */
-    public SaveGUI() 
+    public SaveGUI(String filmSelected) 
     {
+        this.filmSelected = filmSelected;
         initComponents();
     }
     
@@ -211,11 +212,18 @@ public class SaveGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        CodeGenerator c = new CodeGenerator();
+        CodeGenerator c = new CodeGenerator(filmSelected);
+        String file = "";
+        
+        if(filmSelected == "MultistageNetwork"){
+            file = "SP - Multistage Network.txt";
+        } else if (filmSelected == "JacobiRelaxation"){
+            file = "SP - Jacobi Relaxation Technique.txt";
+        }
         
         try 
         {
-            c.overwriteFile(c.readFile("SP - Jacobi Relaxation Technique.txt"), 
+            c.overwriteFile(c.readFile(file), 
                     rowsFormattedTextField.getText(), columnsFormattedTextField.getText(), 
                     iterationsFormattedTextField.getText(), fileNameTextField.getText());
             

@@ -16,9 +16,10 @@ import java.util.List;
 
 public class CodeGenerator 
 {
-    public CodeGenerator()
+    private String filmSelected = "MultistageNetwork";
+    public CodeGenerator(String filmSelected)
     {
-        //
+        this.filmSelected = filmSelected;
     }
     
     public void overwriteFile(List<String> list, String rows, 
