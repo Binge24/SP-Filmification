@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  *
- * @author Binge2
+ * @author Binge2/Ryuusei
  */
 
 public class CodeGenerator 

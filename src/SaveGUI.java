@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Binge2
+ * @author Binge2/Ryuusei
  */
 public class SaveGUI extends javax.swing.JFrame {
 

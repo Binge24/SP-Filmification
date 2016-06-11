@@ -8,7 +8,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
- * @author Binge2
+ * @author Binge2/Ryuusei
  */
 
 public class Filmification 

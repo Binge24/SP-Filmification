@@ -27,7 +27,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
- * @author Binge2
+ * @author Binge2/Ryuusei
  */
 
 public class FilmificationGUI extends javax.swing.JFrame 
@@ -37,6 +37,11 @@ public class FilmificationGUI extends javax.swing.JFrame
     private int currentIndex;
     private Timer timer;
     boolean paused = false;
+    private String filmSelected = "MultistageNetwork";
+    
+    //NOTE
+    private MultistageNetwork mn = new MultistageNetwork();
+    //add imoha dri benj
     
     public FilmificationGUI(int numOfImages, boolean isTileViewDefault) 
             throws UnsupportedLookAndFeelException, ParseException, URISyntaxException 
@@ -98,50 +103,94 @@ public class FilmificationGUI extends javax.swing.JFrame
         b.doClick();
     }
     
-    public void initScreenshots(int numOfImages, String folder, 
-            String filenameStart, String fileExtension, boolean isTileView) throws URISyntaxException
+    public void old_initScreenshots_pls_delete_later_ty()
     {
+//    public void initScreenshots(int numOfImages, String folder, 
+//            String filenameStart, String fileExtension, boolean isTileView) throws URISyntaxException
+//    {
+//        getScreenshots().clear();
+//        
+//        for (int i = 1; i <= numOfImages; i++)
+//        {
+//            BufferedImage img = null;
+//            try 
+//            {
+//                String path = "/" + folder + "/" + filenameStart + i + "." + fileExtension;
+//                img = ImageIO.read(new File(getClass().getResource(path).toURI()));
+//            } catch (IOException e) 
+//            {
+//                e.printStackTrace();
+//            }
+//            
+//            JLabel label = new JLabel(); 
+//            
+//            if(isTileView)
+//            {
+//                label.setSize(300, 210);
+//                label.setText("JRT " + i);
+//                
+//                Font font = label.getFont();
+//                // same font but bold
+//                Font boldFont = new Font(font.getFontName(), Font.BOLD, font.getSize());
+//                label.setFont(boldFont);
+//            }
+//            else
+//            {
+//                label.setSize(700, 490);
+//            }
+//            
+//            img = toBufferedImage(img.getScaledInstance(label.getWidth(), 
+//                    label.getHeight(), Image.SCALE_SMOOTH));
+//            
+//            ImageIcon imageIcon = new ImageIcon(img);
+//            label.setIcon(imageIcon);
+//            
+//            label.setHorizontalTextPosition(JLabel.CENTER);
+//            label.setVerticalTextPosition(JLabel.BOTTOM);
+//            label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+//            
+//            screenshots.add(label);
+//        }
+//    }
+    }
+    
+    public void initScreenshots(ArrayList<String> filenames, ArrayList<String> labels, boolean isTileView) throws URISyntaxException {
         getScreenshots().clear();
-        
-        for (int i = 1; i <= numOfImages; i++)
-        {
+
+        for (int i = 0; i < filenames.size(); i++) {
             BufferedImage img = null;
-            try 
-            {
-                String path = "/" + folder + "/" + filenameStart + i + "." + fileExtension;
+            try {
+                String path = "/screenshots/" + filenames.get(i) + ".png";
+                System.out.println("path:" + path);
                 img = ImageIO.read(new File(getClass().getResource(path).toURI()));
-            } catch (IOException e) 
-            {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
-            
-            JLabel label = new JLabel(); 
-            
-            if(isTileView)
-            {
+
+            JLabel label = new JLabel();
+
+            if (isTileView) {
                 label.setSize(300, 210);
-                label.setText("JRT " + i);
-                
+                label.setText(labels.get(i));
+
                 Font font = label.getFont();
                 // same font but bold
                 Font boldFont = new Font(font.getFontName(), Font.BOLD, font.getSize());
                 label.setFont(boldFont);
-            }
-            else
-            {
+            } else {
                 label.setSize(700, 490);
             }
-            
-            img = toBufferedImage(img.getScaledInstance(label.getWidth(), 
+
+            img = toBufferedImage(img.getScaledInstance(label.getWidth(),
                     label.getHeight(), Image.SCALE_SMOOTH));
-            
+
             ImageIcon imageIcon = new ImageIcon(img);
             label.setIcon(imageIcon);
-            
+
             label.setHorizontalTextPosition(JLabel.CENTER);
             label.setVerticalTextPosition(JLabel.BOTTOM);
             label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-            
+
             screenshots.add(label);
         }
     }
@@ -554,9 +603,20 @@ public class FilmificationGUI extends javax.swing.JFrame
         jMenu4.setText("Open Sample Films");
 
         jMenuItem18.setText("Jacobi Relaxation Technique");
+        jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem18ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem18);
 
-        jMenuItem19.setText("Multi-Staged Network");
+        jMenuItem19.setLabel("Multistage Network");
+        jMenuItem19.setName(""); // NOI18N
+        jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem19ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem19);
 
         fileMenu.add(jMenu4);
@@ -666,10 +726,18 @@ public class FilmificationGUI extends javax.swing.JFrame
     
     private void fullViewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fullViewButtonActionPerformed
         updatePlaybackButtons();
-        
+        //NOTE
+        ArrayList<String> filenames = new ArrayList<String>();
+        ArrayList<String> labels = new ArrayList<String>();
+        if(filmSelected == "MultistageNetwork"){
+            filenames = mn.getScreenshots();
+            labels = mn.getLabels();
+        } else if (filmSelected == "JacobiRelaxation"){
+            //add imoha dri benj
+        }
         try 
         {
-            initScreenshots(getNumOfImages(), "screenshots", "5x5jrt", "png", false);
+            initScreenshots(filenames, labels, false);
             
             tileViewPanel.setLayout(new java.awt.GridLayout(1, 1));
         
@@ -720,9 +788,18 @@ public class FilmificationGUI extends javax.swing.JFrame
     }//GEN-LAST:event_nextButtonActionPerformed
     
     private void tileViewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tileViewButtonActionPerformed
+        //NOTE
+        ArrayList<String> filenames = new ArrayList<String>();
+        ArrayList<String> labels = new ArrayList<String>();
+        if(filmSelected == "MultistageNetwork"){
+            filenames = mn.getScreenshots();
+            labels = mn.getLabels();
+        } else if (filmSelected == "JacobiRelaxation"){
+            //add imoha dri benj
+        }
         try
         {
-            initScreenshots(getNumOfImages(), "screenshots", "5x5jrt", "png", true);
+            initScreenshots(filenames, labels, true);
             addScreenshotsTileView(4, 3);
             
             showFullViewButton();
@@ -854,6 +931,16 @@ public class FilmificationGUI extends javax.swing.JFrame
         SaveGUI s = new SaveGUI();
         s.setVisible(true);
     }//GEN-LAST:event_jMenuItem12ActionPerformed
+
+    private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
+        filmSelected = "JacobiRelaxation";
+        System.out.println("selected film: " + filmSelected);
+    }//GEN-LAST:event_jMenuItem18ActionPerformed
+
+    private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
+        filmSelected = "MultistageNetwork";
+        System.out.println("selected film: " + filmSelected);
+    }//GEN-LAST:event_jMenuItem19ActionPerformed
     
     // --------------- getters and setters --------------- //
 
